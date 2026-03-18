@@ -1,0 +1,44 @@
+# == 基础框架
+requests>=2.31.0
+lxml>=4.9.0
+beautifulsoup4>=4.12.0
+
+# == 数据采集
+feedparser>=6.0.0
+html2text>=2020.1.16
+pdfplumber>=0.10.0
+
+# == 数据处理
+pandas>=2.1.0
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+
+# == AI 处理
+python-dotenv>=1.0.0
+python-dateutil>=2.8.2
+
+# == 文本处理
+whoosh>=8.0.0
+rank-bm25>=0.2.2
+
+# == 图片处理
+Pillow>=10.0.0
+ioflo>=2.0.0
+
+# == Web 渲染
+Jinja2>=3.1.0
+PyMarkdown>=0.1.20
+
+# == 部署工具
+pyyaml>=6.0
+
+# == 日志与工具
+python-json-logger>=2.0.0
+python-dotenv>=1.0.0
+
+# == 可选：如需 OCR
+# pytesseract>=0.3.10
+
+# == 可选：如需代理支持
+# httpx[http2]>=0.24.0
+# aiohttp>=3.8.0

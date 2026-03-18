@@ -1,0 +1,167 @@
+# 跨境电商资讯源配置
+# 每日 8 点自动采集这些来源的新闻
+# 格式说明：
+#   - rss_url: RSS 订阅链接
+#   - name: 新闻源名称
+#   - category: 所属分类（自动识别）
+#   - keywords: 搜索关键词（用于搜索类源）
+#   - fetch_url: 首页 URL（用于提取最新文章链接）
+#   - priority: 优先级（数字越大越优先）
+#   - interval_hours: 采集间隔（默认 0=每次重新）
+
+news_sources:
+  # ============ 中文渠道 ============
+  
+  # 阿里巴巴国际站 - 行业趋势
+  - name: "阿里巴巴国际站行业趋势"
+    rss_url: "https://mp.weixin.qq.com/s/AlibabaIndustryTrends"
+    fetch_url: "https://international.aliexpress.com/blog"
+    keywords: ["阿里巴巴国际站", "行业趋势", "跨境电商"]
+    priority: 1
+    category: "阿里系"
+  
+  # 亚马逊卖家大学新闻
+  - name: "亚马逊卖家大学"
+    fetch_url: "https://sellercentral.amazon.com/learn/news"
+    keywords: ["Amazon", "Seller University", "News"]
+    priority: 2
+    category: "亚马逊"
+  
+  # EB 动力网 - 跨境电商垂直媒体
+  - name: "EB 动力网"
+    fetch_url: "https://www.ebrun.com/"
+    keywords: ["跨境电商", "EB 动力", "行业"]
+    priority: 1
+    category: "资讯媒体"
+  
+  # 跨境知道
+  - name: "跨境知道"
+    fetch_url: "https://www.kjzhidao.net/"
+    keywords: ["跨境知道", "跨境电商", "运营"]
+    priority: 1
+    category: "运营干货"
+  
+  # 跨境头条
+  - name: "跨境头条"
+    fetch_url: "https://www.kjtd.com/"
+    keywords: ["跨境头条", "跨境", "行业动态"]
+    priority: 1
+    category: "资讯媒体"
+  
+  # ============ 英文渠道 ============
+  
+  # Amazon Seller University RSS (如果可用)
+  # - name: "Amazon Seller Updates"
+  #   rss_url: "https://rss.amazon.com/seller/news"
+  #   priority: 3
+  #   category: "亚马逊"
+  
+  # Shopify 官方博客
+  - name: "Shopify Blog"
+    rss_url: "https://www.shopify.com/blogs/online-store?view=rss"
+    priority: 2
+    category: "独立站"
+  
+  # Ecommerce Times
+  - name: "Ecommerce Times"
+    rss_url: "https://ecommercetimes.com/rss/"
+    priority: 2
+    category: "独立站"
+  
+  # TechCrunch 电商相关
+  - name: "TechCrunch Commerce"
+    rss_url: "https://techcrunch.com/category/ecommerce/rss/"
+    priority: 3
+    category: "科技"
+  
+  # ============ 平台动态 ============
+  
+  # TikTok Shop 东南亚
+  # 需要 API 支持
+  # - name: "TikTok Shop SEA"
+  #   api_url: "https://tiktok.com/api/shop/news?locale=zh-CN"
+  #   priority: 5
+  #   category: "TikTok"
+  
+  # Temu 卖家中心
+  # - name: "Temu Seller News"
+  #   api_url: "https://seller-center.pinduoduo.com/api/news?channel=en"
+  #   priority: 5
+  #   category: "Temu"
+  
+  # ============ 政策合规 ============
+  
+  # 欧盟电商政策
+  - name: "欧盟贸易委员会"
+    rss_url: "https://trade.ec.europa.eu/news"
+    priority: 4
+    category: "政策"
+  
+  # 美国商务部长
+  - name: "美国商务部长新闻"
+    rss_url: "https://www.commerce.gov/newsroom"
+    priority: 4
+    category: "政策"
+  
+  # ============ 物流供应链 ============
+  
+  # 运满满 - 货运价格
+  # 需要 OCR+AI 识别
+  # - name: "运满满跨境"
+  #   fetch_url: "https://www.yunmanman.com/cross-border"
+  #   priority: 6
+  #   category: "物流"
+  
+  # 国际货运论坛
+  - name: "国际货运网"
+    fetch_url: "https://www.cargosupply.com/"
+    priority: 6
+    category: "物流"
+  
+  # 跨境物流追踪
+  - name: "17Track 物流追踪"
+    fetch_url: "https://www.17track.net/en/blog"
+    priority: 6
+    category: "物流"
+  
+  # ============ 支付金融 ============
+  
+  # PayPal 新闻
+  - name: "PayPal 商业动态"
+    rss_url: "https://www.paypal.com/us/ven/business/news"
+    priority: 7
+    category: "支付"
+  
+  # Stripe 商务博客
+  - name: "Stripe 动态"
+    rss_url: "https://blog.stripe.com/feeds/e-commerce"
+    priority: 7
+    category: "支付"
+  
+  # ============ 热门品类 ============
+  
+  # 亚马逊新品趋势
+  - name: "亚马逊新品报告"
+    fetch_url: "https://sellercentral.amazon.com/new-products"
+    priority: 8
+    category: "选品"
+  
+  # Google Trends
+  - name: "Google Trends 电商"
+    fetch_url: "https://trends.google.com/explore?q=e-commerce"
+    priority: 8
+    category: "选品"
+  
+  # ============ 社区论坛 ============
+  
+  # Reddit r/ecommerce
+  - name: "Reddit 跨境电商社区"
+    rss_url: "https://www.reddit.com/r/ecommerce/.rss"
+    priority: 5
+    category: "社区"
+  
+  # Shopify Community
+  - name: "Shopify 社区"
+    rss_url: "https://community.shopify.com/feed?category=blog"
+    priority: 5
+    category: "社区"

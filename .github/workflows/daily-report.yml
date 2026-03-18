@@ -1,0 +1,100 @@
+name: 跨境电商日报自动生成
+
+# 每天北京时间 8 点（UTC+8）自动执行
+# GitHub Actions 时区：使用 UTC，所以 8 点对应 00:00 UTC
+# 注意：GitHub Actions 默认使用 UTC 时间
+
+on:
+  # 定时任务 - 每天 UTC 时间 00:00（北京时间 8:00）
+  schedule:
+    - cron: "0 0 * * *"
+  # 同时支持手动触发查看
+  workflow_dispatch:
+    inputs:
+      manual_msg:
+        description: "手动触发说明"
+        required: false
+        default: "用户手动触发"
+
+jobs:
+  collect-and-generate:
+    name: "每日日报生成"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60  # 超时 60 分钟
+    defaults:
+      run:
+        shell: bash  # 使用 Bash 执行命令
+    
+    steps:
+      # 1. 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: main  # 从 main 分支拉取
+          
+      # 2. 设置 Python 环境
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'  # 缓存依赖包
+          
+      # 3. 设置国内镜像加速
+      - name: 设置 PyPI 镜像
+        env:
+          FASTLY_HOST: https://pypi.tuna.tsinghua.edu.cn/simple
+        run: |
+          echo "export PYTHONPATH=\"\$PYTHONPATH\"" >> ~/.bashrc
+          
+      # 4. 安装依赖
+      - name: 安装依赖
+        env:
+          https://pypi.tuna.tsinghua.edu.cn/simple:
+          pip install --trusted-host pypi.tuna.tsinghua.edu.cn -r requirements.txt
+          
+      # 5. 导出新闻源配置
+      - name: 导出新闻源配置
+        run: |
+          # 从 sources.yaml 读取配置
+          # 生成 Python 可读的字典
+          python -c "
+import yaml
+with open('src/config/sources.yaml', 'r', encoding='utf-8') as f:
+    sources = yaml.safe_load(f)
+    for source in sources['news_sources']:
+        print(f'NAME={source.get\(\"name\",\"\")}\nURL={source.get\(\"rss_url\",\"\")}\nCATEGORY={source.get\(\"category\",\"\")}\nPRIORITY={source.get\(\"priority\",0)}\n')
+          " > src/config/sources_dict.txt
+          
+      # 6. 执行数据采集
+      - name: 采集新闻内容
+        id: collect
+        env:
+          # 这里可以添加代理配置
+          # export HTTP_PROXY="http://127.0.0.1:7890"
+        run: |
+          PYTHONPATH=src python src/scrapers/crawl.py
+      
+      # 7. 处理去重
+      - name: 内容去重处理
+        id: process
+        env:
+          # API 密钥（如果需要）
+          # API_KEY="${{secrets.API_KEY}}"
+        run: |
+          PYTHONPATH=src python src/processor/analyze.py
+      
+      # 8. 生成日报
+      - name: 生成日报页面
+        run: |
+          PYTHONPATH=src python src/generator/create_report.py
+      
+      # 9. 部署到 GitHub Pages
+      - name: 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          # 使用 commit 消息显示是谁触发的
+          commit_message: "📰 生成日报 ${{ github.actor }} ${{ github.date }}${{ github.event.inputs.manual_msg}}"
+          keep_files: false  # 清理之前的文件，只保留最新日报

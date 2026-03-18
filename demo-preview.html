@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨境电商资讯日报 - 演示预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .section-title h2 {
+            color: #2563eb;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        .section-title .icon {
+            background: #dbeafe;
+            padding: 0.5rem;
+            border-radius: 50%;
+            color: #2563eb;
+        }
+        
+        .news-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2563eb;
+        }
+        
+        .news-meta {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        .news-source {
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+        
+        .source-amazon { background: #dbeafe; color: #1e40af; }
+        .source-tiktok { background: #fce7f3; color: #be123c; }
+        .source-alibaba { background: #dcfce7; color: #166534; }
+        .source-temu { background: #fef3c7; color: #92400e; }
+        .source-supply { background: #e0f2fe; color: #075985; }
+        .source-shipping { background: #fef3c7; color: #b45309; }
+        .source-market { background: #ede9fe; color: #7c3aed; }
+        
+        .news-summary {
+            color: #475569;
+            line-height: 1.7;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 4px;
+            margin-top: 0.8rem;
+        }
+        
+        .news-url {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 跨境电商资讯日报</h1>
+            <p class="subtitle">全球电商资讯 · 每日精准推送</p>
+            <div style="margin-top: 1rem;">
+                <span class="badge">亚马逊卖家大学</span>
+                <span class="badge">TikTok for Business</span>
+                <span class="badge">阿里巴巴国际站</span>
+                <span class="badge">Temu 卖家中心</span>
+            </div>
+        </header>
+        
+        <!-- 数据概览 -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">📰 今日新闻源</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">-200ms</div>
+                <div class="stat-label">⚡ 采集耗时</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8:00</div>
+                <div class="stat-label">🕐 自动推送时间</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">自动</div>
+                <div class="stat-label">☁️ GitHub Actions</div>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 1 -->
+        <div class="section-title">
+            <span class="icon">📦</span>
+            <h2>亚马逊动态</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">亚马逊调整欧洲卖家账号验证政策</div>
+                        <div class="news-meta">
+                            <span class="news-source source-amazon">📢 亚马逊卖家大学</span>
+                            <span class="news-source source-market">🌍 欧洲市场</span>
+                            <span>🕐 2026-03-18 10:30</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>欧盟委员会发布新法规，要求所有亚马逊欧洲站卖家提供额外的税务信息和企业身份验证。新政策将于 3 月 25 日生效，卖家需提前准备相关材料...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">亚马逊 Q4 财报解读：云业务持续增长</div>
+                        <div class="news-meta">
+                            <span class="news-source source-amazon">📊 财报解读</span>
+                            <span>🕐 2026-03-18 09:15</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>第四季度云收入同比增长 28%，AWS 业务成为亚马逊新的增长引擎。公司宣布将在 AI 领域加大投入，推出更多企业级 AI 服务...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 2 -->
+        <div class="section-title">
+            <span class="icon">🎵</span>
+            <h2>TikTok 商业动态</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">TikTok Shop 在东南亚扩大物流网络</div>
+                        <div class="news-meta">
+                            <span class="news-source source-tiktok">🛍️ TikTok for Business</span>
+                            <span class="news-source source-supply">📦 物流更新</span>
+                            <span>🕐 2026-03-18 11:20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>TikTok Shop 宣布在泰国、越南、菲律宾三國新增 12 个物流枢纽，承诺将配送时效缩短至 3 天。此举标志着平台在东南亚电商市场的深耕...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">TikTok 新品类扶持政策出台</div>
+                        <div class="news-meta">
+                            <span class="news-source source-tiktok">🎯 政策更新</span>
+                            <span>🕐 2026-03-18 08:45</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>平台发布《三月新品扶持计划》，重点关注家居装饰、宠物用品、户外运动三大品类，为入驻品牌提供流量倾斜和营销补贴...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 3 -->
+        <div class="section-title">
+            <span class="icon">🐼</span>
+            <h2>阿里巴巴国际站动态</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">阿裡巴巴国际站 AI 外贸助手上线</div>
+                        <div class="news-meta">
+                            <span class="news-source source-alibaba">🤖 AI 应用</span>
+                            <span class="news-source source-product">✨ 新功能</span>
+                            <span>🕐 2026-03-18 14:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>全新 AI 外贸助手基于大模型技术，可自动生成多语言产品描述、智能回复客户询盘。首批内测用户已反馈询盘转化率提升 35%...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 4 -->
+        <div class="section-title">
+            <span class="icon">🛒</span>
+            <h2>Temu 平台更新</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">Temu 北美站新增"品牌认证"计划</div>
+                        <div class="news-meta">
+                            <span class="news-source source-temu">🏷️ 品牌专区</span>
+                            <span>🕐 2026-03-18 12:30</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>计划旨在帮助优质品牌商家脱颖而出，通过认证的品牌可获得独立品牌页面和流量扶持。首批开放品类包括电子产品、家居用品等...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 5 -->
+        <div class="section-title">
+            <span class="icon">🚌</span>
+            <h2>跨境物流资讯</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">中国至东南亚航线运费下调</div>
+                        <div class="news-meta">
+                            <span class="news-source source-shipping">📉 运费更新</span>
+                            <span>🕐 2026-03-18 07:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>多家物流公司宣布从 3 月 20 日起，中国至东南亚航线小包运费普遍下调 15%-20%，利好中小卖家，预计将持续至 Q2 季度...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 6 -->
+        <div class="section-title">
+            <span class="icon">📈</span>
+            <h2>市场趋势分析</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">2026 年电商品类趋势预测报告</div>
+                        <div class="news-meta">
+                            <span class="news-source source-market">📊 趋势分析</span>
+                            <span class="news-source source-market">📈 市场报告</span>
+                            <span>🕐 2026-03-18 09:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>AI 智能硬件、可持续家居、户外运动装备预计保持 30%+ 的年增长率。报告建议卖家提前布局，关注绿色消费趋势...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <!-- 资讯板块 7 -->
+        <div class="section-title">
+            <span class="icon">💡</span>
+            <h2>运营技巧分享</h2>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <div class="news-header">
+                    <div>
+                        <div class="news-title">跨境电商独立站 SEO 优化指南</div>
+                        <div class="news-meta">
+                            <span class="news-source source-market">🎓 知识分享</span>
+                            <span>🕐 2026-03-18 10:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-summary">
+                    <p>本文详解独立站 SEO 核心要素：关键词研究、页面结构优化、内容创作策略。遵循此指南，可显著提升自然流量...</p>
+                </div>
+                <a href="#" class="news-url">🔗 查看原文</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>🛒 跨境电商资讯日报</strong></p>
+            <p>每日定时推送 · 全球电商资讯精选</p>
+            <p style="margin-top: 0.5rem;">
+                <span style="display: inline-block; background: #fff7ed; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem;">✅ GitHub 已部署</span>
+                <span style="display: inline-block; background: #eff6ff; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem;">🤖 自动采集</span>
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">
+                此页面为演示预览，真实数据每日北京时间 8:00 自动更新<br/>
+                Repository: <code>github.com/lq030138/dianshan</code>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
